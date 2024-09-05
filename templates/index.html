@@ -1,12 +1,12 @@
 {% include "header.html" %}
       <!-- Hero with video of using the app -->
       <div class="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 class="display-4 fw-bold text-body-emphasis">Centered screenshot</h1>
+        <h1 class="display-4 fw-bold text-body-emphasis">Simplify Your Exam Timetable Management</h1>
         <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+          <p class="lead mb-4">Easily find and sync your exam timetables with your Google Calendar (more apps coming soon). No more manual searching or missed exams—organize your schedule with a few clicks!</p>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-            <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Primary button</button>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+            <a href="{{url_for('pdfviewer')}}" type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Find your timetable</a>
+            <a type="button" href="#" class="btn btn-outline-secondary btn-lg px-4">Sync with your calendar</a>
           </div>
         </div>
         <div class="overflow-hidden" style="max-height: 30vh;">
@@ -17,45 +17,63 @@
       </div>
 <!-- features of app -->
       <div class="container px-4 py-5" id="hanging-icons">
-        <h2 class="pb-2 border-bottom">Features</h2>
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-          <div class="col d-flex align-items-start">
-            <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-              <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
-            </div>
-            <div>
-              <h3 class="fs-2 text-body-emphasis">Easy PDF viewer</h3>
-              <p>Click below to select and view the pdf for your college Faulty</p>
-              <a href="{{url_for('pdfviewer')}}" class="btn btn-primary">
-                PDF view
-              </a>
-            </div>
-          </div>
-          <div class="col d-flex align-items-start">
-            <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-              <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"></use></svg>
-            </div>
-            <div>
-              <h3 class="fs-2 text-body-emphasis">Filter by year / search for timetable</h3>
-              <p>Can filter by year to view all the timetable for that year or use the search function to look up our course code or course name</p>
-              <a href="#" class="btn btn-primary">
-                Search
-              </a>
-            </div>
-          </div>
-          <div class="col d-flex align-items-start">
-            <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-              <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"></use></svg>
-            </div>
-            <div>
-              <h3 class="fs-2 text-body-emphasis">API integration (coming soon)</h3>
-              <p>After you find your desired timetable click the buttons below to add the timetable to your google calendar. This requried you to log into your google account!</p>
-              <a href="#" class="btn btn-primary">
-                Primary button
-              </a>
-            </div>
-          </div>
-        </div>
+  <h2 class="pb-2 border-bottom">Features</h2>
+  <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    
+    <div class="col d-flex flex-column align-items-start">
+      <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
+        </svg>
       </div>
+      <div>
+        <h3 class="fs-2 text-body-emphasis">Easy PDF viewer</h3>
+        <p>Click below to select and view the pdf for your college Faculty</p>
+      </div>
+      <div class="mt-auto d-flex justify-content-end">
+        <a href="{{url_for('pdfviewer')}}" class="btn btn-primary">
+          PDF view
+        </a>
+      </div>
+    </div>
+    
+    <div class="col d-flex flex-column align-items-start">
+      <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="fs-2 text-body-emphasis">Filter by year / search for timetable</h3>
+        <p>Filter by year to view the timetable or search by course code or course name.</p>
+      </div>
+      <div class="mt-auto d-flex justify-content-end">
+        <a href="#" class="btn btn-primary">
+          Search
+        </a>
+      </div>
+    </div>
+    
+    <div class="col d-flex flex-column align-items-start">
+      <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
+          <path d="M6.445 11.688V6.354h-.633A13 13 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23"/>
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+        </svg>         
+      </div>
+      <div>
+        <h3 class="fs-2 text-body-emphasis">Calendar integration (coming soon)</h3>
+        <p>Add your timetable to Google Calendar after logging into your Google account!</p>
+      </div>
+      <div class="mt-auto d-flex justify-content-end">
+        <a href="#" class="btn btn-primary">
+          Primary button
+        </a>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
 
       {%include 'footer.html'%}

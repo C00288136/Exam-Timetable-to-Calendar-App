@@ -1,13 +1,16 @@
 from flask import Flask, render_template,redirect,url_for
 from flask_bootstrap import Bootstrap5
+from dotenv import load_dotenv
+import os
 
 
+load_dotenv()
 
 # TODO configure app
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "eH1L07Y2hPtpsrElJX6gCo29STQeUVW9"
+app.config["SECRET_KEY"] = os.environ['SECRET_KEY']
 Bootstrap5(app)
-
+print(os.environ['SECRET_KEY'])
 
 
 # TODO index page   
