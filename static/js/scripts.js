@@ -75,6 +75,8 @@
         }
       }
 
+
+      // filter pdf by year
       async function filterByYear(year) {
         selectedYear = year;
         document.getElementById("year").innerText = selectedYear;
@@ -91,6 +93,7 @@
         }
       }
 
+      // search
       async function searchPdf() {
         searchTerm = document.getElementById("search-bar").value.trim();
 
@@ -121,6 +124,7 @@
           console.error("Error searching PDf:", error);
         }
       }
+      // extract text from page
       async function extractTextFromPage(pdfDoc, pageNum) {
         const page = await pdfDoc.getPage(pageNum);
         const textContext = await page.getTextContent();
@@ -132,6 +136,7 @@
 
         return pageText;
       }
+      // filter by year
       async function findPagesWithYear(pdfDoc, selectedYear) {
         const totalPages = pdfDoc.numPages;
         const matchingPages = [];
@@ -145,6 +150,7 @@
         return matchingPages;
       }
 
+      // Find pages
       async function findPagesWithSearchTerm(matchingPages, searchTerm) {
         const matchingSearchPages = [];
 
@@ -157,6 +163,7 @@
         return matchingSearchPages;
       }
 
+      // render only matching pages with search
       async function renderMatchingPages(pdfDoc, matchingPages) {
         const pdfViewer = document.getElementById("pdf-viewer");
         pdfViewer.innerHTML = "";
@@ -187,7 +194,52 @@
 
       const searchBar = document.getElementById("search-bar");
 
+      // search bar listener
       searchBar.addEventListener("keydown", function (event) {
         if (event.key === "Enter") searchPdf();
       });
+
+// Function to send the year and course code to Flask
+function sendDataToFlask() {
+  const courseCode = document.getElementById("search-bar").value.trim(); // Get course code from the search bar
+  const selectedYear = document.getElementById("year").innerText.trim(); // Get selected year from the dropdown
+  const pdfViewer = document.getElementById("pdf-viewer");
+  const errorPost = document.getElementById("error-POST");
+
+  console.log(courseCode, selectedYear)
+
+  // Check if more than one PDF page is rendered
+  if (pdfViewer.children.length > 1) {
+    // Show an error message if more than one page is displayed
+    errorPost.style.display = "block";
+    errorPost.innerHTML = "More than one timetable is visible. Narrow your search (e.g. by typing in Course Code).";
+  } else if (courseCode && selectedYear) {
+    // Hide the error if the conditions are met and send the data
+    errorPost.style.display = "none";
+
+    fetch('/process-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        course_code: courseCode, // Sending the course code
+        year: selectedYear // Sending the selected year
+      }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        console.log('Data successfully sent to Flask');
+      } else {
+        console.error('Error sending data to Flask');
+      }
+    })
+    .catch((error) => console.error('Error:', error));
+  } else {
+    // If course code or year is missing, show an error
+    errorPost.style.display = "block";
+    errorPost.innerHTML = "Please fill in both the course code and year.";
+  }
+}
     
